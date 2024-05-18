@@ -10,6 +10,14 @@ const trackSchema = mongoose.Schema({
     artist: {
         type: String,
         required: true,
+    },
+    coverArtUrl: {
+        type: String,
+        required: false,
+    },
+    soundClipUrl: {
+        type: String,
+        required: false,
     }
 });
 
