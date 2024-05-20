@@ -1,4 +1,4 @@
-const url = 'https://deezerdevs-deezer.p.rapidapi.com/search?q=megadeath';
+const url = "https://deezerdevs-deezer.p.rapidapi.com/search?q=lil%20nas%20x";
 const options = {
 	method: 'GET',
 	headers: {
@@ -11,8 +11,8 @@ const fetchMusicData = async() =>{
     try {
         const response = await fetch(url, options);
         const data = await response.json();
-        const trackUrl = data.data[0].link;
-        console.log(data.data[0].link);
+        const trackUrl = data.data[0].preview;
+        // console.log(trackUrl);
         return trackUrl;
     } catch (error) {
         console.error(error);
@@ -20,3 +20,5 @@ const fetchMusicData = async() =>{
 };
 
 fetchMusicData();
+
+module.exports = fetchMusicData;

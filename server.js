@@ -7,6 +7,8 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const trackRouter = require("./controllers/tracks.js");
 
+const fetchAudio = require("./app.js");
+
 //Database
 mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on("connected", ()=>{
@@ -20,6 +22,10 @@ app.use(express.json());
 
 //Routes
 app.use("/tracks", trackRouter);
+
+app.get("/audio", async (req, res)=>{
+    res.json(await fetchAudio())
+})
 
 //Server
 app.listen(process.env.PORT ? process.env.PORT : 4100, ()=>{
