@@ -1,4 +1,5 @@
-const url = "https://deezerdevs-deezer.p.rapidapi.com/search?q=lil%20nas%20x";
+
+const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=`;
 const options = {
 	method: 'GET',
 	headers: {
@@ -7,18 +8,20 @@ const options = {
 	}
 };
 
-const fetchMusicData = async() =>{
+const fetchMusicData = async(artist) =>{
     try {
-        const response = await fetch(url, options);
+        const response = await fetch(url + artist, options);
         const data = await response.json();
         const trackUrl = data.data[0].preview;
-        // console.log(trackUrl);
-        return trackUrl;
+        const trackTitle = data.data[0].title;
+        console.log(trackUrl);
+        return ({trackTitle, trackUrl}); //NOTE: If we are returning data in JSON format in the route handler (res.json()), we can put the data in a jovascript object inside the function that does the fetching from the API - The variable holding the data becomes the property key and the value is the fetched value
     } catch (error) {
         console.error(error);
     }
 };
 
-fetchMusicData();
+
+// fetchMusicData("becky g");
 
 module.exports = fetchMusicData;

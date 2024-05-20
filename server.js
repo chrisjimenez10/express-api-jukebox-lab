@@ -23,8 +23,8 @@ app.use(express.json());
 //Routes
 app.use("/tracks", trackRouter);
 
-app.get("/audio", async (req, res)=>{
-    res.json(await fetchAudio())
+app.get("/audio/:name", async (req, res)=>{
+    res.json( await fetchAudio(req.params.name));
 })
 
 //Server
